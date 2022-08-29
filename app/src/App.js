@@ -5,6 +5,7 @@ import Home from "./Home";
 import CampaignList from "./Campaigns";
 import CreateCampaign from "./CreateCampaign";
 import InstructionPage from "./InstructionsPage";
+import Challenges from "./ChallengePage";
 import "./App.css";
 
 import { parse } from "yaml";
@@ -37,6 +38,7 @@ function App() {
           />
           <Route path="/create-campaign" element={<CreateCampaign />} />
           <Route path="/instructions" element={<InstructionPage />} />
+          <Route path="/challenge" element={<Challenges />} />
         </Routes>
       </BrowserRouter>
     </div>
