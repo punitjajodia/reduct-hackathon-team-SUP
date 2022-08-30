@@ -45,15 +45,19 @@ const Challenges = () => {
       <div className="editor-container">
         <div className="header-container">
           <h4>Write Your Code Here</h4>
-          <button className="compile-button" onClick={() => runCode(code)}>Run Code</button>
+          <button className="compile-button" onClick={() => runCode(code)}>
+            Run Code
+          </button>
         </div>
         <textarea
           value={code}
           className="code-container"
           onChange={handleCode}
         ></textarea>
-
-        <div className="output-container">{output}</div>
+        <div className="output-container">
+          <h2>Output:</h2>
+          {output}{" "}
+        </div>
       </div>
     </div>
   );
