@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CampaignList = ({ db, setDb, loading }) => {
   if (loading) return <div>Loading challenges list ...</div>;
@@ -19,7 +20,9 @@ const CampaignList = ({ db, setDb, loading }) => {
   return (
 
     <>{heading}
+    <Link to ='/create-campaign'>
     <button> Create a new campaign </button>
+    </Link>
     <table><thead>{tableHeaderRow}</thead><tbody>{campaigns}</tbody></table> </> );
 
 };

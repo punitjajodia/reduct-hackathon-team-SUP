@@ -16,15 +16,7 @@ const ChallengesSelector = ({
     alert(challenge.title);
   };
 
-  const tableHeaderRow = (
-    <tr>
-      <th>Title</th>
-      <th>Expected Time</th>
-      <th>Difficulty Level</th>
-      <th>XP</th>
-      <th>View Details</th>
-    </tr>
-  );
+  const tableHeaderRow = ( <tr><th>Selection</th><th>Title</th><th>Expected Time</th><th>Difficulty Level</th><th>XP</th><th>View Details</th></tr>);
 
   const tableData =
     challengesList &&
@@ -56,12 +48,16 @@ const ChallengesSelector = ({
   );
 };
 
+
 const CreateCampaign = ({ challenges }) => {
   const [selectedChallenges, setSelectedChallenges] = useState([]);
   const [campaignName, setCampaignName] = useState("");
   const [currentStep, setCurrentStep] = useState(STEPS.CAMPAIGN_NAME);
   const heading = <h2> Create a Campaign</h2>;
-
+  const handleNextStep = () => {
+    setCurrentStep(STEPS.CREATE_LINK);
+    navigator.clipboard.writeText('http://localhost:3000/instructions');
+  }
   switch (currentStep) {
     case STEPS.CAMPAIGN_NAME:
       return (
@@ -87,7 +83,7 @@ const CreateCampaign = ({ challenges }) => {
             selectedChallenges={selectedChallenges}
             setSelectedChallenges={setSelectedChallenges}
           ></ChallengesSelector>
-          <button onClick={() => setCurrentStep(STEPS.CREATE_LINK)}>
+          <button onClick={() => handleNextStep()}>
             Go to Next Step
           </button>
         </>
