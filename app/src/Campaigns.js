@@ -1,38 +1,26 @@
 import React from "react";
 
 const CampaignList = ({ db, setDb, loading }) => {
-  if (loading) return <div>Loading challenges list...</div>;
+  if (loading) return <div>Loading challenges list ...</div>;
 
   const campaigns = db.campaigns.map((campaign, idx) => {
     return (
-      <div className="c-table">
-        <table className="campaign-table">
             <tr>
               <td> {campaign.id}</td>
-              <td>Campaign {campaign.title}</td>
+              <td> {campaign.title}</td>
               <td> {campaign.expiring_on}</td>
+              <td><button>View Detail</button></td>
             </tr>
-        </table>
-      </div>
     );
   } );
-  
+  const heading = <h2> My Campaign</h2>;
+  const tableHeaderRow = <tr><th>S.N</th><th>Title</th><th>Expiring On</th><th>View Details</th></tr>;
 
   return (
-    <div>
-      <h3>My campaigns</h3>
-      <button onclick = "" className="">Create Campaign</button>
-        <table className="campaign-table">
-          <thead>
-            <tr>
-              <th>S.N</th>
-              <th>Title</th>
-              <th>Expires On</th>
-            </tr>
-          </thead>
-        </table>
-      <div>{campaigns}</div>
-    </div>
-  );
+
+    <>{heading}
+    <button> Create a new campaign </button>
+    <table><thead>{tableHeaderRow}</thead><tbody>{campaigns}</tbody></table> </> );
+
 };
 export default CampaignList;
