@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const InstructionPage = () =>
 {
     return (
@@ -10,7 +11,9 @@ const InstructionPage = () =>
         <br /> Please ensure that you have a stable internet connection. In case of internet issues, the decision taken by the team will be final. 
         <br /> Please give the test from one of the following browsers: Google Chrome, Microsoft Edge, Mozilla Firebox.
         <br /> 
+        <Link to= '/challenge'>
         <button> BEGIN </button>
+        </Link>
       </div>
     );
 };

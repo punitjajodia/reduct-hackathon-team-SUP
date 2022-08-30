@@ -1,5 +1,4 @@
 import React from "react";
-import "./style/Campaign.css";
 
 const CampaignList = ({ db, setDb, loading }) => {
   if (loading) return <div>Loading challenges list ...</div>;
@@ -11,7 +10,9 @@ const CampaignList = ({ db, setDb, loading }) => {
         <td> {campaign.title}</td>
         <td> {campaign.expiring_on}</td>
         <td>
-          <button>View Detail</button>
+          <Link to="/results">
+            <button>View Detail</button>
+          </Link>
         </td>
       </tr>
     );
@@ -28,14 +29,12 @@ const CampaignList = ({ db, setDb, loading }) => {
 
   return (
     <>
-      <div className="campaign-container">
-        {heading}
-        <button> Create a new campaign </button>
-        <table>
-          <thead>{tableHeaderRow}</thead>
-          <tbody>{campaigns}</tbody>
-        </table>{" "}
-      </div>
+      {heading}
+      <button> Create a new campaign </button>
+      <table>
+        <thead>{tableHeaderRow}</thead>
+        <tbody>{campaigns}</tbody>
+      </table>{" "}
     </>
   );
 };
