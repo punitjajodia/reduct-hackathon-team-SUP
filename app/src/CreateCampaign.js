@@ -18,7 +18,7 @@ const CreateCampaign = () =>
           <h4>When does your campaign end?</h4>
           <input></input>
             </div>
-            <button>GET STARTED</button>
+            <button className>GET STARTED</button>
       </div>
     );
     

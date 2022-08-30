@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./style/Campaign.css";
 const CampaignList = ({ db, setDb, loading }) => {
   if (loading) return <div>Loading your campaigns...</div>;
 
@@ -19,7 +19,7 @@ const CampaignList = ({ db, setDb, loading }) => {
   
 
   return (
-    <div>
+    <div className="main-container">
       <h3>My campaigns</h3>
       <button onclick = "" className="">Create Campaign</button>
         <table className="campaign-table">
