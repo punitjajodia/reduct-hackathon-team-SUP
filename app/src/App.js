@@ -35,7 +35,7 @@ function App() {
             path="/campaigns"
             element={<CampaignList db={db} setDb={setDb} loading={loading} />}
           />
-          <Route path="/create-campaign" element={<CreateCampaign />} />
+          <Route path="/create-campaign" element={<CreateCampaign challenges={db.challenges_list}/>} />
           <Route path="/instructions" element={<InstructionPage />} />
         </Routes>
       </BrowserRouter>
