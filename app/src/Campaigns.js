@@ -14,7 +14,7 @@ const CampaignList = ({ db, setDb, loading }) => {
     );
   } );
   const heading = <h2> My Campaign</h2>;
-  const tableHeaderRow = <tr><th>S.N</th><th>Title</th><th>Expiring On</th><th>View Details</th></tr>;
+  const tableHeaderRow = <tr><th>S.N</th><th>Title</th><th>Expiring On</th><th>View Detail</th></tr>;
 
   return (
 

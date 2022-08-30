@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+:root {
+    --cream : #FEF8EC;
+    --type-light :#DDF3FC;
+    --blue : #96B8DE;
+    --gray :#889CAC;
+    --background-light: #B4CBE4;
+    --background-dark: #343434;
+    --success-green: #A0F383;
+    --error-red: #A72500;
+    --type-dark: #405160;
+
+}
