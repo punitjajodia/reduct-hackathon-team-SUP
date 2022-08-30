@@ -1,3 +1,5 @@
 .campaign-container{
+    width:1
+    height:100vh;
     background-color: var(--cream);
 }

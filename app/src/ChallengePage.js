@@ -41,7 +41,9 @@ const Challenges = () => {
   };
   return (
     <div className="main-container">
-      <div className="problem-container"></div>
+          <div className="problem-container">
+              
+      </div>
       <div className="editor-container">
         <div className="header-container">
           <h4>Write Your Code Here</h4>
@@ -55,7 +57,7 @@ const Challenges = () => {
           onChange={handleCode}
         ></textarea>
         <div className="output-container">
-          <h2>Output:</h2>
+          <h5>Output:</h5>
           {output}{" "}
         </div>
       </div>
