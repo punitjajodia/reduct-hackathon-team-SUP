@@ -54,7 +54,7 @@ const CreateCampaign = ({challenges}) =>
         return(<>
           {heading}
         <h3>
-          Select Challenges</h3>
+          Select Challenges for </h3>
           <ChallengesSelector challengesList={challenges} selectedChallenges={selectedChallenges} setSelectedChallenges={setSelectedChallenges}></ChallengesSelector>
           <button onClick={() => setCurrentStep(STEPS.CREATE_LINK)}>Go to Next Step</button>
 

@@ -8,7 +8,7 @@ function Home({db, setDb}) {
   const [email, setEmail] = useState("");
 
   const login = () => {
-
+    <div> Enter your email address to login to your account </div>
     const account = db.admin_accounts.find(account => {
       return account.email === email
     });
