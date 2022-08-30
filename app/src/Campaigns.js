@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/Campaign.css";
 const CampaignList = ({ db, setDb, loading }) => {
-  if (loading) return <div>Loading your campaigns...</div>;
+  if (loading) return <div>Loading challenges list...</div>;
 
   const campaigns = db.campaigns.map((campaign, idx) => {
     return (
