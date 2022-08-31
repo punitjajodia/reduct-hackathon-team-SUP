@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style/Campaign.css";
+import "./style/App.css";
 
 const CampaignList = ({ db, setDb, loading }) => {
-  if (loading) return <div>Loading challenges list ...</div>;
+  if (loading) return <div className="loader">Loading challenges list ...</div>;
 
   const campaigns = db.campaigns.map((campaign, idx) => {
     return (
@@ -11,7 +13,9 @@ const CampaignList = ({ db, setDb, loading }) => {
         <td> {campaign.title}</td>
         <td> {campaign.expiring_on}</td>
         <td>
-          <button>View Detail</button>
+          <Link to="/results">
+            <button className="view-button">View Detail</button>
+          </Link>
         </td>
       </tr>
     );
@@ -22,19 +26,21 @@ const CampaignList = ({ db, setDb, loading }) => {
       <th>S.N</th>
       <th>Title</th>
       <th>Expiring On</th>
-      <th>View Detail</th>
     </tr>
   );
 
   return (
-    <>{heading}
-    <Link to ='/create-campaign'>
-    <button> Create a new campaign </button>
-    </Link>
-      <table>
-        <thead>{tableHeaderRow}</thead>
-        <tbody>{campaigns}</tbody>
-      </table>{" "}
+    <>
+      <div className="campaign-container">
+        {heading}
+        <Link className="flex-center" to="/create-campaign">
+          <button className="button"> Create a new campaign </button>
+        </Link>
+        <table className="campaign-table">
+          <thead className="campaign-table-head">{tableHeaderRow}</thead>
+          <tbody className="campaign-table-body">{campaigns}</tbody>
+        </table>{" "}
+      </div>
     </>
   );
 };
