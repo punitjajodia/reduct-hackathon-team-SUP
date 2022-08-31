@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style/Challenges.css";
-
 
 const Challenges = () => {
   const [apiResponse, setApiResponse] = useState("");
   const [output, setOutput] = useState("");
   const [testResult, setTestResult] = useState(null);
+  const [time, setTime] = useState("");
 
-  
   const [code, setCode] = useState("");
   const navigate = useNavigate();
   const id = 562;
@@ -23,30 +22,29 @@ const Challenges = () => {
     }
   };
 
-  let timeSecond = 300;
-  let min;
-  let sec;
+  useEffect(() => {
+    let timeSecond = 300;
 
+    const countDown = setInterval(() => {
+      timeSecond--;
+      displayTime(timeSecond);
+    }, 1000);
 
-  const countDown = setInterval(() => {
-    timeSecond--;
-    displayTime(timeSecond);
-    if (timeSecond == 0 || timeSecond < 1) {
-      clearInterval(countDown);
-    }
-  }, 1000);
+    function displayTime(timeSecond) {
+      const min = Math.floor(timeSecond / 60);
+      const sec = Math.floor(timeSecond % 60);
 
-  function displayTime(timeSecond) {
-      min = Math.floor(timeSecond / 60);
-      sec = Math.floor(timeSecond % 60);
-
-      console.log(`
+      setTime(`
       ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
-      `)
-    
+      `);
     }
+    if (timeSecond === 0 || timeSecond < 1) {
+      return () => {
+        clearInterval(countDown);
+      };
+    }
+  }, []);
 
-   
   const runCode = () => {
     fetch("https://api.programiz.pro/api/Challenge/run", {
       method: "POST",
@@ -79,7 +77,7 @@ const Challenges = () => {
       });
   };
   return (
-    <div className="main-container">
+    <div className="main-code-container">
       <div className="problem-container">
         <h3
           style={{
@@ -93,23 +91,24 @@ const Challenges = () => {
             textAlign: "left",
           }}
         >
-          <p>
+          <h5>
             Create a program to calculate the simple interest and the final
             amount.
-          </p>
-          Create a program to calculate the simple interest and the final
-          amount. Use the following formula to calculate the interest and final
-          amount:
+          </h5>
+          Use the following formula to calculate the interest and final amount:
+          <br />
           <em>
             Simple Interest = P * R * T * .01 Final Amount = P + Simple Interest{" "}
           </em>
-          <br />#sc
-          Here, P is the principal amount, R is the rate of interest and T is
-          the time in years. Take float input for principal, rate and time,
-          respectively. Calculate the simple interest using the formula and
-          store the result in interest. Calculate the final amount using the
-          formula and store it in total_sum. Print interest and total_sum in
-          separate lines.
+          <br />
+          <p style={{ textAlign: "left" }}>
+            Here, P is the principal amount, R is the rate of interest and T is
+            the time in years. Take float input for principal, rate and time,
+            respectively. Calculate the simple interest using the formula and
+            store the result in interest. Calculate the final amount using the
+            formula and store it in total_sum. Print interest and total_sum in
+            separate lines.
+          </p>
         </div>
 
         <button onClick={handleCodeSubmit} className="button">
@@ -118,8 +117,8 @@ const Challenges = () => {
       </div>
       <div className="editor-container">
         <div className="header-container">
-          <h4>Write Your Code Here</h4>
-          <h4 className="countdown"></h4>
+          <h4>Write Your Code Here:</h4>
+          <h4 className="countdown">{time}</h4>
           <button className="compile-button" onClick={() => runCode(code)}>
             Run Code
           </button>
@@ -129,25 +128,40 @@ const Challenges = () => {
           className="code-container"
           onChange={handleCode}
         ></textarea>
-        <div className="output-container">
-          <h5>Output:</h5>
+        <div
+          className="output-container"
+          style={{
+            textAlign: "left",
+          }}
+        >
+          <h5
+            style={{
+              textAlign: "left",
+              padding: "3%",
+            }}
+          >
+            Output:
+          </h5>
           {output}{" "}
-          {/* {testResult ? (
-            <div style={{ color: "var(--success-green)" }}>
-              Successful Compilation! You have completed the test.
-            </div>
-          ) : (
-            <div style={{ color: "var(--error-red)" }}>
-              Compilation Failed! Try Again.
-            </div>
-          )} */}
           {testResult && (
-            <div style={{ color: "var(--success-green)" }}>
+            <div
+              style={{
+                color: "var(--success-green)",
+                textAlign: "left",
+                padding: "3%",
+              }}
+            >
               Successful Compilation! You have completed the test.
             </div>
           )}
           {testResult === false && (
-            <div style={{ color: "var(--error-red)" }}>
+            <div
+              style={{
+                color: "var(--error-red)",
+                textAlign: "left",
+                padding: "3%",
+              }}
+            >
               Compilation Failed! Try Again.
             </div>
           )}

@@ -8,14 +8,18 @@ const CampaignList = ({ db, setDb, loading }) => {
 
   const campaigns = db.campaigns.map((campaign, idx) => {
     return (
-      <tr>
+      <tr key={idx}>
         <td> {campaign.id}</td>
         <td> {campaign.title}</td>
         <td> {campaign.expiring_on}</td>
+
         <td>
           <Link to="/results">
             <button className="view-button">View Detail</button>
           </Link>
+        </td>
+        <td>
+          <button className="view-button">Delete</button>{" "}
         </td>
       </tr>
     );
@@ -30,18 +34,19 @@ const CampaignList = ({ db, setDb, loading }) => {
   );
 
   return (
-    <>
-      <div className="campaign-container">
-        {heading}
-        <Link className="flex-center" to="/create-campaign">
-          <button className="button"> Create a new campaign </button>
-        </Link>
-        <table className="campaign-table">
-          <thead className="campaign-table-head">{tableHeaderRow}</thead>
-          <tbody className="campaign-table-body">{campaigns}</tbody>
-        </table>{" "}
+   
+      <div className="main-container">
+        <div className="campaign-container">
+          {heading}
+          <Link className="flex-center" to="/create-campaign">
+            <button className="create-button">Add new +</button>
+          </Link>
+          <table className="campaign-table">
+            <thead className="campaign-table-head">{tableHeaderRow}</thead>
+            <tbody className="campaign-table-body">{campaigns}</tbody>
+          </table>{" "}
+        </div>
       </div>
-    </>
   );
 };
 export default CampaignList;

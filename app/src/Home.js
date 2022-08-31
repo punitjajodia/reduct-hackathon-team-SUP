@@ -43,13 +43,13 @@ function Home({ db, setDb }) {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="main-container">
+      <div className="home-container">
         <h1> Pre-screening Hiring Tool </h1>
         <h5> Enter your email address to login to your account </h5>
         <input className="input" value={email} onChange={(e) => setEmail(e.target.value)}></input>
         <button className="button" onClick={login}>Login</button>
-      </header>
+      </div>
     </div>
   );
 }

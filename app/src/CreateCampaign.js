@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./style/CreateCampaign.css";
+import "./style/App.css";
 const STEPS = {
   CAMPAIGN_NAME: "Campaign Name",
   SELECT_CHALLENGES: "Select Challenges",
@@ -14,7 +15,7 @@ const ChallengesSelector = ({
   setSelectedChallenges,
 }) => {
   const toggleChallengeSelected = (challenge) => {
-    alert(challenge.title);
+    console.log(challenge.title);
   };
 
   const tableHeaderRow = (
@@ -30,9 +31,9 @@ const ChallengesSelector = ({
 
   const tableData =
     challengesList &&
-    challengesList.map((challenge) => {
+    challengesList.map((challenge,idx) => {
       return (
-        <tr>
+        <tr key={idx}>
           <td>
             <input
               type="checkbox"
@@ -44,16 +45,16 @@ const ChallengesSelector = ({
           <td>{challenge.difficulty_level}</td>
           <td>{challenge.xp}</td>
           <td>
-            <button>View Detail</button>
+            <button className="view-button">View Detail</button>
           </td>
         </tr>
       );
     });
 
   return (
-    <table>
-      <thead>{tableHeaderRow}</thead>
-      <tbody>{tableData}</tbody>
+    <table className="challenge-table">
+      <thead className="challenge-table-head">{tableHeaderRow}</thead>
+      <tbody className="challenge-table-body">{tableData}</tbody>
     </table>
   );
 };
@@ -70,41 +71,53 @@ const CreateCampaign = ({ challenges }) => {
   switch (currentStep) {
     case STEPS.CAMPAIGN_NAME:
       return (
-        <>
-          {heading}
-          <h3>Enter campaign name</h3>
-          <input
-            value={campaignName}
-            onChange={(e) => setCampaignName(e.target.value)}
-          ></input>
-          <button className="button" onClick={() => setCurrentStep(STEPS.SELECT_CHALLENGES)}>
-            Go to Next Step
-          </button>
-        </>
+        <div className="main-container">
+          <div className="form-container">
+            {heading}
+            <h3>What would you like to name your campaign?</h3>
+            <input
+              className="textbox"
+              value={campaignName}
+              onChange={(e) => setCampaignName(e.target.value)}
+            ></input>
+            <button
+              className="button"
+              onClick={() => setCurrentStep(STEPS.SELECT_CHALLENGES)}
+            >
+              Start your Campaign
+            </button>
+          </div>
+        </div>
       );
     case STEPS.SELECT_CHALLENGES:
       return (
-        <>
-          {heading}
-          <h3>Select Challenges for </h3>
-          <ChallengesSelector
-            challengesList={challenges}
-            selectedChallenges={selectedChallenges}
-            setSelectedChallenges={setSelectedChallenges}
-          ></ChallengesSelector>
-          <button onClick={() => handleNextStep()}>Go to Next Step</button>
-        </>
+        <div className="main-container">
+          <div className="challenge-container">
+            {heading}
+            <h3>Select Challenges for your campaign</h3>
+            <ChallengesSelector
+              challengesList={challenges}
+              selectedChallenges={selectedChallenges}
+              setSelectedChallenges={setSelectedChallenges}
+            ></ChallengesSelector>
+            <button className="button" onClick={() => handleNextStep()}>
+              Finish
+            </button>
+          </div>
+        </div>
       );
     case STEPS.CREATE_LINK:
       return (
-        <>
-          {heading}
-          <h2>Link Copied </h2>
-          <h4>You can now send this link to your list of candidates.</h4>
-          <Link to="/campaigns">
-            <button> Back to My Campaigns </button>
-          </Link>
-        </>
+        <div className="main-container">
+          <div className="link-container">
+            {heading}
+            <h2>Link Copied </h2>
+            <h4>You can now send this link to your list of candidates.</h4>
+            <Link to="/campaigns">
+              <button className="button"> Back to My Campaigns </button>
+            </Link>
+          </div>
+        </div>
       );
     default:
       return <div>Something is wrong</div>;
