@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style/Challenges.css";
 
+
 const Challenges = () => {
   const [apiResponse, setApiResponse] = useState("");
   const [output, setOutput] = useState("");
   const [testResult, setTestResult] = useState(null);
+
+  
   const [code, setCode] = useState("");
   const navigate = useNavigate();
   const id = 562;
+
   const handleCode = (e) => {
     setCode(e.target.value);
   };
@@ -19,6 +23,30 @@ const Challenges = () => {
     }
   };
 
+  let timeSecond = 300;
+  let min;
+  let sec;
+
+
+  const countDown = setInterval(() => {
+    timeSecond--;
+    displayTime(timeSecond);
+    if (timeSecond == 0 || timeSecond < 1) {
+      clearInterval(countDown);
+    }
+  }, 1000);
+
+  function displayTime(timeSecond) {
+      min = Math.floor(timeSecond / 60);
+      sec = Math.floor(timeSecond % 60);
+
+      console.log(`
+      ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
+      `)
+    
+    }
+
+   
   const runCode = () => {
     fetch("https://api.programiz.pro/api/Challenge/run", {
       method: "POST",
@@ -58,25 +86,17 @@ const Challenges = () => {
             textAlign: "left",
           }}
         >
-          Simple Interest
-        </h3>
-        <h5
-          style={{
-            textAlign: "left",
-          }}
-        >
           Program Description
-        </h5>
-        <p
+        </h3>
+        <div
           style={{
             textAlign: "left",
           }}
         >
-          <b>
+          <p>
             Create a program to calculate the simple interest and the final
             amount.
-          </b>
-          <br />
+          </p>
           Create a program to calculate the simple interest and the final
           amount. Use the following formula to calculate the interest and final
           amount:
@@ -90,7 +110,7 @@ const Challenges = () => {
           store the result in interest. Calculate the final amount using the
           formula and store it in total_sum. Print interest and total_sum in
           separate lines.
-        </p>
+        </div>
 
         <button onClick={handleCodeSubmit} className="button">
           Submit
@@ -99,6 +119,7 @@ const Challenges = () => {
       <div className="editor-container">
         <div className="header-container">
           <h4>Write Your Code Here</h4>
+          <h4 className="countdown"></h4>
           <button className="compile-button" onClick={() => runCode(code)}>
             Run Code
           </button>
