@@ -119,7 +119,7 @@ const Challenges = () => {
       <div className="editor-container">
         <div className="header-container">
           <h4>Write Your Code Here:</h4>
-          <h4 className="countdown">{time}</h4>
+          <h4 className="countdown">Time Remaining{time}</h4>
           <button className="compile-button" onClick={() => runCode(code)}>
             Run Code
           </button>
