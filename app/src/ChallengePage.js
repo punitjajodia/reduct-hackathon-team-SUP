@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./style/Challenges.css";
 
 const Challenges = () => {
@@ -111,9 +112,9 @@ const Challenges = () => {
           </p>
         </div>
 
-        <button onClick={handleCodeSubmit} className="button">
+        <Link to="/finish"> <button onClick={handleCodeSubmit} className="button">
           Submit
-        </button>
+        </button> </Link>
       </div>
       <div className="editor-container">
         <div className="header-container">
